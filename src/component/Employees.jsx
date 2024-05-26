@@ -86,9 +86,9 @@ export default function Employees() {
               />
             ))}
           </div>
-          <div className="text-white  ">
-            <div className="bg-slate-700 text-2xl rounded-md px-4 grid  grid-cols-2 justify-between items-center  p-2  font-bold">
-              <span>Average Age</span>
+          <div className="text-white my-2  ">
+            <div className="bg-slate-700 text-2xl rounded-md px-4 grid  grid-cols-2 justify-between items-center  p-4  font-bold">
+              <span className="text-yellow-500">Average Age</span>
               <span>{calculateAverages()}</span>
             </div>
           </div>
