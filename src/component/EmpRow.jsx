@@ -8,7 +8,7 @@ export default function EmpRow({ keys, data, onClick, isTeam = false }) {
         <span>{data.age}</span>
         <button
           onClick={onClick}
-          className="bg-blue-500 cursor-pointer disabled:bg-gray-500 px-4 py-2 rounded"
+          className="bg-blue-500 cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-500 px-4 py-2 rounded"
           disabled={data.inTeam}
         >
           {isTeam ? "Remove" : "Add"}
