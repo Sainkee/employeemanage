@@ -20,7 +20,7 @@ export default function Employees() {
 
   const calculateAverages = () => {
     const totalAge = myTeam.reduce((acc, team) => acc + team.age, 0);
-    return totalAge / myTeam.length;
+    return totalAge / myTeam.length ||0;
 };
   const removeFromTeam = (id) => {
     console.log(id);
@@ -39,7 +39,7 @@ export default function Employees() {
         <h1 className="uppercase my-2 text-black font-extrabold text-4xl">
           Employees
         </h1>
-        <div className="flex flex-col gap-4 h-[60vh] overflow-scroll p-5">
+        <div className="flex flex-col gap-4 h-[70vh] overflow-scroll  p-5">
           {allEmployees.map((employee) => (
             <EmpRow
               data={employee}
@@ -54,8 +54,8 @@ export default function Employees() {
         <h1 className="uppercase my-2 text-black font-extrabold text-4xl">
           Team
         </h1>
-        <div className="flex flex-col  justify-between gap-4  h-[70vh] overflow-scroll p-5">
-          <div className="flex flex-col gap-4  overflow-scroll ">
+        <div className="flex flex-col  justify-between gap-4  h-[70vh]  p-5">
+          <div className="flex flex-col gap-4 h-full overflow-scroll ">
             {myTeam.map((employee) => (
               <EmpRow
                 keys={crypto.randomUUID()}
@@ -68,7 +68,7 @@ export default function Employees() {
           <div className="text-white  ">
             <div className="bg-slate-700 text-2xl rounded-md px-4 grid  grid-cols-2 justify-between items-center  p-2  font-bold">
               <span>Average Age</span>
-              <span>{calculateAverages()||0}</span>
+              <span>{calculateAverages()}</span>
             </div>
           </div>
         </div>
