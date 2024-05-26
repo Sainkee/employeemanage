@@ -18,6 +18,10 @@ export default function Employees() {
     }
   };
 
+  const calculateAverages = () => {
+    const totalAge = myTeam.reduce((acc, team) => acc + team.age, 0);
+    return totalAge / myTeam.length;
+};
   const removeFromTeam = (id) => {
     console.log(id);
     const newTeam = myTeam.filter((emp) => emp.id !== id);
@@ -64,7 +68,7 @@ export default function Employees() {
           <div className="text-white  ">
             <div className="bg-slate-700 text-2xl rounded-md px-4 grid  grid-cols-2 justify-between items-center  p-2  font-bold">
               <span>Average Age</span>
-              <span>20</span>
+              <span>{calculateAverages()||0}</span>
             </div>
           </div>
         </div>
