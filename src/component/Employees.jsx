@@ -67,12 +67,14 @@ export default function Employees() {
         <h1 className="uppercase my-2 text-black font-extrabold text-4xl">
           Team
         </h1>
-        <span
-          onClick={sortByAge}
-          className="bg-pink-500 absolute right-5 top-5 text-white px-4 py-1 rounded-full cursor-pointer"
-        >
-          {sortOrder === "asc" ? "Sort By Age (Asc)" : "Sort By Age (Desc)"}
-        </span>
+        {myTeam.length > 1 && (
+          <span
+            onClick={sortByAge}
+            className="bg-pink-500 absolute right-7 top-7 text-white px-4 py-1 rounded-full cursor-pointer"
+          >
+            {sortOrder === "asc" ? "Sort By Age (Asc)" : "Sort By Age (Desc)"}
+          </span>
+        )}
         <div className="flex flex-col  justify-between gap-4  h-[70vh] ">
           <div className="flex flex-col gap-4 h-full overflow-scroll  p-5 ">
             {myTeam.map((employee) => (
