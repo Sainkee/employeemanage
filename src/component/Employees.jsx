@@ -5,6 +5,7 @@ import EmpRow from "./EmpRow";
 export default function Employees() {
   const [myTeam, setMyTeam] = useState([]);
   const [allEmployees, setAllEmployees] = useState(employees);
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const addToTeam = (id) => {
     const employee = allEmployees.find((emp) => emp.id === id);
@@ -20,10 +21,10 @@ export default function Employees() {
 
   const calculateAverages = () => {
     const totalAge = myTeam.reduce((acc, team) => acc + team.age, 0);
-    return totalAge / myTeam.length ||0;
-};
+    return totalAge / myTeam.length || 0;
+  };
+
   const removeFromTeam = (id) => {
-    console.log(id);
     const newTeam = myTeam.filter((emp) => emp.id !== id);
     setMyTeam(newTeam);
     setAllEmployees((prevEmployees) =>
@@ -31,6 +32,18 @@ export default function Employees() {
         emp.id === id ? { ...emp, inTeam: false } : emp
       )
     );
+  };
+
+  const sortByAge = () => {
+    const sortedTeam = [...myTeam].sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.age - b.age;
+      } else {
+        return b.age - a.age;
+      }
+    });
+    setMyTeam(sortedTeam);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
 
   return (
@@ -50,12 +63,18 @@ export default function Employees() {
           ))}
         </div>
       </div>
-      <div className="border-2 border-gray-700 p-2 ">
+      <div className="border-2 border-gray-700 p-2 relative">
         <h1 className="uppercase my-2 text-black font-extrabold text-4xl">
           Team
         </h1>
-        <div className="flex flex-col  justify-between gap-4  h-[70vh]  p-5">
-          <div className="flex flex-col gap-4 h-full overflow-scroll ">
+        <span
+          onClick={sortByAge}
+          className="bg-pink-500 absolute right-5 top-5 text-white px-4 py-1 rounded-full cursor-pointer"
+        >
+          {sortOrder === "asc" ? "Sort By Age (Asc)" : "Sort By Age (Desc)"}
+        </span>
+        <div className="flex flex-col  justify-between gap-4  h-[70vh] ">
+          <div className="flex flex-col gap-4 h-full overflow-scroll  p-5 ">
             {myTeam.map((employee) => (
               <EmpRow
                 keys={crypto.randomUUID()}
